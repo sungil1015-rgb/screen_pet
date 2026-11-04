@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data: blob:; style-src 'self'; script-src 'self'">
+  <title>마루펫</title>
+  <link rel="stylesheet" href="studio.css">
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <strong>마루펫</strong>
+      <span>화면 위를 걷는 미니펫</span>
+    </div>
+    <div class="header-actions">
+      <label class="check"><input id="powerSave" type="checkbox"> 절전</label>
+      <button id="togglePet" class="primary" type="button">띄우기</button>
+      <button id="quitApp" type="button">종료</button>
+    </div>
+  </header>
+  <main>
+    <section class="panel controls">
+      <h2>스프라이트 시트</h2>
+      <p class="hint">PNG 권장, 투명 배경. 시트는 이 컴퓨터에만 저장됩니다.</p>
+      <div class="row">
+        <button id="pickSprite" type="button">시트 불러오기</button>
+        <button id="resetSprite" type="button">기본 시트</button>
+        <input id="spriteFile" type="file" accept="image/png,image/webp,image/gif,image/jpeg">
+      </div>
+      <p id="sheetInfo" class="meta">시트를 읽는 중</p>
+      <p id="sheetWarn" class="warn"></p>
+      <div class="grid2">
+        <label>프레임 가로 <input id="frameW" type="number" min="8" max="512" step="1"></label>
+        <label>프레임 세로 <input id="frameH" type="number" min="8" max="512" step="1"></label>
+      </div>
+      <h2>클립</h2>
+      <div class="clip" data-clip="idle">
+        <b>대기</b>
+        <label>시작 <input id="idleStart" type="number" min="0" step="1"></label>
+        <label>수 <input id="idleCount" type="number" min="0" step="1"></label>
+        <label>FPS <input id="idleFps" type="number" min="1" max="24" step="1"></label>
+      </div>
+      <div class="clip" data-clip="walk">
+        <b>걷기</b>
+        <label>시작 <input id="walkStart" type="number" min="0" step="1"></label>
+        <label>수 <input id="walkCount" type="number" min="0" step="1"></label>
+        <label>FPS <input id="walkFps" type="number" min="1" max="24" step="1"></label>
+      </div>
+      <div class="clip" data-clip="sit">
+        <b>앉기</b>
+        <label>시작 <input id="sitStart" type="number" min="0" step="1"></label>
+        <label>수 <input id="sitCount" type="number" min="0" step="1"></label>
+        <label>FPS <input id="sitFps" type="number" min="1" max="24" step="1"></label>
+      </div>
+      <h2>움직임</h2>
+      <label class="range">크기 <input id="scale" type="range" min="1" max="8" step="1"> <span id="scaleVal">2</span></label>
+      <label class="range">속도 <input id="speed" type="range" min="10" max="240" step="1"> <span id="speedVal">72</span></label>
+      <div class="grid2">
+        <label>바닥 여백 <input id="floorGap" type="number" min="0" max="240" step="1"></label>
+        <label>좌우 여백 <input id="sideMargin" type="number" min="0" max="480" step="1"></label>
+      </div>
+      <label>모니터 <select id="display"></select></label>
+      <h2>미리보기</h2>
+      <p class="legend"><i class="swatch idle"></i> 대기 <i class="swatch walk"></i> 걷기 <i class="swatch sit"></i> 앉기</p>
+      <div id="preview" class="preview"></div>
+    </section>
+    <section class="panel stage-wrap">
+      <div class="stage-head">
+        <h2>데모</h2>
+        <button id="savePlace" type="button">이 위치 저장</button>
+      </div>
+      <div id="stage" class="stage">
+        <div class="ledge"></div>
+        <div class="ledge"></div>
+        <div class="ledge"></div>
+        <div class="floor"></div>
+        <div id="actor"></div>
+      </div>
+      <p class="hint">드래그로 자리를 옮깁니다. 클릭하면 앉습니다. 띄우면 이 가로 위치가 실제 화면에 적용됩니다.</p>
+      <p id="petState" class="meta">내려가 있음. 캐릭터 위를 클릭해도 아래 창이 눌립니다.</p>
+    </section>
+  </main>
+  <footer>
+    <span id="status">준비 중</span>
+    <span>창을 닫으면 트레이로 들어갑니다.</span>
+  </footer>
+  <script src="shared.js"></script>
+  <script src="studio.js"></script>
+</body>
+</html>

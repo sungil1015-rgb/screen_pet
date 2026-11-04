@@ -1,0 +1,52 @@
+{
+  "name": "maru-pet",
+  "version": "1.0.0",
+  "private": true,
+  "description": "마루펫 데스크탑 미니펫",
+  "main": "main.js",
+  "author": "maru",
+  "scripts": {
+    "generate": "node tools/generate-assets.js",
+    "start": "node tools/launch.js .",
+    "dist": "electron-builder --win dir --x64"
+  },
+  "devDependencies": {
+    "electron": "33.4.11",
+    "electron-builder": "25.1.8"
+  },
+  "build": {
+    "appId": "com.marupet.app",
+    "productName": "MaruPet",
+    "executableName": "MaruPet",
+    "asar": false,
+    "npmRebuild": false,
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "shared.js",
+      "studio.html",
+      "studio.css",
+      "studio.js",
+      "pet.html",
+      "pet.css",
+      "pet.js",
+      "assets/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "dir",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico",
+      "requestedExecutionLevel": "asInvoker",
+      "signAndEditExecutable": false
+    }
+  }
+}
